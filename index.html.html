@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tanzeel Qureahi — AI Developer & UI/UX Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0a0a0f;
+    --ink-muted: #4a4a5a;
+    --ink-faint: #9a9aaa;
+    --surface: #ffffff;
+    --surface-alt: #f4f3f0;
+    --accent: #1a1aff;
+    --accent-glow: #5555ff;
+    --green: #00c47a;
+    --tag-bg: #eeeeff;
+    --tag-text: #2222cc;
+    --border: rgba(0,0,0,0.08);
+    --r: 14px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* HEADER / HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--ink);
+    padding: 60px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(85,85,255,0.25) 0%, transparent 70%);
+    top: -100px; left: -100px;
+    pointer-events: none;
+  }
+
+  .logo-mark {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: #fff;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent-glow);
+  }
+
+  .hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 0;
+  }
+
+  .availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,196,122,0.12);
+    border: 1px solid rgba(0,196,122,0.3);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: var(--green);
+    font-weight: 500;
+    margin-bottom: 32px;
+    width: fit-content;
+  }
+
+  .availability::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(42px, 5vw, 64px);
+    color: #fff;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  .hero-name span {
+    color: var(--accent-glow);
+  }
+
+  .hero-title {
+    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-bio {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.75;
+    max-width: 400px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 14px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent-glow); transform: translateY(-2px); }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.8);
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 32px;
+  }
+
+  .stat-item { text-align: left; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+  }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* HERO RIGHT */
+  .hero-right {
+    background: var(--surface-alt);
+    padding: 60px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+    position: relative;
+  }
+
+  .profile-card {
+    background: var(--surface);
+    border-radius: var(--r);
+    border: 1px solid var(--border);
+    padding: 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a1aff 0%, #5555ff 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .profile-info h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .profile-info p { font-size: 13px; color: var(--ink-muted); margin-top: 2px; }
+  .fiverr-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #1dbf73;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-top: 8px;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .skill-chip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-chip:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .skill-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .icon-blue { background: #eeeeff; }
+  .icon-green { background: #e6faf2; }
+  .icon-purple { background: #f3eeff; }
+  .icon-orange { background: #fff4e6; }
+
+  .hero-bottom-tag {
+    font-size: 12px;
+    color: var(--ink-faint);
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  /* SECTIONS */
+  section { padding: 100px 0; }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  .section-desc {
+    font-size: 17px;
+    color: var(--ink-muted);
+    max-width: 540px;
+    line-height: 1.75;
+  }
+
+  /* SERVICES */
+  .services-bg { background: var(--surface-alt); }
+
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: end;
+    margin-bottom: 56px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .service-card {
+    background: var(--surface);
+    border-radius: var(--r);
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  }
+
+  .service-card.featured {
+    background: var(--ink);
+    border-color: transparent;
+    color: #fff;
+  }
+
+  .service-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--ink-faint);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .service-card.featured .service-num { color: rgba(255,255,255,0.3); }
+
+  .service-icon-wrap {
+    width: 52px; height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    background: var(--tag-bg);
+  }
+
+  .service-card.featured .service-icon-wrap { background: rgba(255,255,255,0.1); }
+
+  .service-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+
+  .service-card.featured .service-desc { color: rgba(255,255,255,0.6); }
+
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 20px;
+  }
+
+  .tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  .service-card.featured .tag {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.75);
+  }
+
+  /* PROCESS */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border-radius: var(--r);
+    overflow: hidden;
+    margin-top: 56px;
+  }
+
+  .process-step {
+    background: var(--surface);
+    padding: 36px 28px;
+    position: relative;
+  }
+
+  .step-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--surface-alt);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .step-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .step-desc {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  /* PORTFOLIO */
+  .portfolio-bg { background: var(--ink); color: #fff; }
+
+  .portfolio-bg .section-label { color: var(--accent-glow); }
+  .portfolio-bg .section-title { color: #fff; }
+  .portfolio-bg .section-desc { color: rgba(255,255,255,0.55); }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 56px;
+  }
+
+  .portfolio-card {
+    border-radius: var(--r);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: border-color 0.25s;
+  }
+
+  .portfolio-card:hover { border-color: rgba(85,85,255,0.5); }
+
+  .portfolio-thumb {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .thumb-1 { background: linear-gradient(135deg, #1a1aff22 0%, #5555ff33 100%); }
+  .thumb-2 { background: linear-gradient(135deg, #00c47a22 0%, #00c47a33 100%); }
+  .thumb-3 { background: linear-gradient(135deg, #ff6b2222 0%, #ff6b2233 100%); }
+  .thumb-4 { background: linear-gradient(135deg, #cc44ff22 0%, #cc44ff33 100%); }
+
+  .portfolio-info {
+    padding: 22px 24px;
+  }
+
+  .portfolio-category {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent-glow);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .portfolio-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .portfolio-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+  }
+
+  /* WHY HIRE */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 56px;
+  }
+
+  .why-card {
+    padding: 32px 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    transition: border-color 0.2s;
+  }
+
+  .why-card:hover { border-color: var(--accent); }
+
+  .why-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .why-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .why-desc {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: var(--accent);
+    padding: 100px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: 'TQ';
+    font-family: 'Syne', sans-serif;
+    font-size: 300px;
+    font-weight: 800;
+    color: rgba(255,255,255,0.05);
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    letter-spacing: -0.05em;
+  }
+
+  .cta-section .section-title { color: #fff; }
+  .cta-section .section-desc { color: rgba(255,255,255,0.7); margin: 0 auto 40px; }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    color: var(--accent);
+    padding: 16px 36px;
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    transition: transform 0.2s;
+  }
+  .cta-btn:hover { transform: scale(1.03); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+  footer a:hover { color: var(--accent-glow); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left, .hero-right { padding: 48px 28px; }
+    .services-header { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .container { padding: 0 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="logo-mark">
+      <span class="logo-dot"></span>
+      Tanzeel Qureahi
+    </div>
+
+    <div class="hero-content">
+      <div class="availability">Available for projects</div>
+      <h1 class="hero-name">AI Developer<br>& <span>UI/UX</span><br>Designer</h1>
+      <p class="hero-title">Full Stack · AI Automation · Figma</p>
+      <p class="hero-bio">Computer Science graduate from Pakistan specializing in AI-powered applications, automation workflows, and beautiful digital experiences. I turn ideas into intelligent products.</p>
+      <div class="hero-cta">
+        <a href="https://www.fiverr.com/tanzeelqureshi1" class="btn-primary" target="_blank">
+          Hire on Fiverr ↗
+        </a>
+        <a href="#services" class="btn-outline">See My Services</a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">5★</div>
+        <div class="stat-label">Rating</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">On Time</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">PK</div>
+        <div class="stat-label">Pakistan</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="profile-card">
+      <div class="avatar">TQ</div>
+      <div class="profile-info">
+        <h3>Tanzeel Qureahi</h3>
+        <p>@tanzeelqureshi1</p>
+        <span class="fiverr-badge">✓ Fiverr Verified</span>
+      </div>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-chip">
+        <div class="skill-icon icon-blue">🤖</div>
+        AI / ChatGPT
+      </div>
+      <div class="skill-chip">
+        <div class="skill-icon icon-green">🌐</div>
+        Full Stack Web
+      </div>
+      <div class="skill-chip">
+        <div class="skill-icon icon-purple">🎨</div>
+        UI/UX Figma
+      </div>
+      <div class="skill-chip">
+        <div class="skill-icon icon-orange">⚙️</div>
+        Automation
+      </div>
+      <div class="skill-chip">
+        <div class="skill-icon icon-blue">📊</div>
+        Data Analysis
+      </div>
+      <div class="skill-chip">
+        <div class="skill-icon icon-green">🔗</div>
+        API Integration
+      </div>
+    </div>
+
+    <p class="hero-bottom-tag">Clean work · On-time delivery · Free revisions</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-bg" id="services">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <p class="section-label">What I Do</p>
+        <h2 class="section-title">Services built to grow your business</h2>
+      </div>
+      <p class="section-desc">From AI chatbots to pixel-perfect designs, I deliver end-to-end solutions that are clean, modern, and built to perform.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card featured">
+        <div class="service-num">01</div>
+        <div class="service-icon-wrap">🤖</div>
+        <h3 class="service-title">Custom AI Chatbots</h3>
+        <p class="service-desc">Intelligent bots powered by OpenAI & ChatGPT that handle customer support, lead generation, and business automation 24/7.</p>
+        <div class="service-tags">
+          <span class="tag">OpenAI</span>
+          <span class="tag">ChatGPT</span>
+          <span class="tag">GPT-4</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-icon-wrap">⚡</div>
+        <h3 class="service-title">AI Automation</h3>
+        <p class="service-desc">Streamline repetitive tasks, connect your tools, and let AI handle your business workflows so you can focus on what matters.</p>
+        <div class="service-tags">
+          <span class="tag">Zapier</span>
+          <span class="tag">Make.com</span>
+          <span class="tag">n8n</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-icon-wrap">🌐</div>
+        <h3 class="service-title">Web Development</h3>
+        <p class="service-desc">Modern, responsive websites and web apps built with cutting-edge technologies that load fast and look stunning.</p>
+        <div class="service-tags">
+          <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Next.js</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-icon-wrap">🎨</div>
+        <h3 class="service-title">UI/UX Design</h3>
+        <p class="service-desc">Professional interfaces designed in Figma that convert visitors into customers. Clean, intuitive, and visually striking.</p>
+        <div class="service-tags">
+          <span class="tag">Figma</span>
+          <span class="tag">Prototyping</span>
+          <span class="tag">Research</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <div class="service-icon-wrap">📊</div>
+        <h3 class="service-title">Data Analysis</h3>
+        <p class="service-desc">Transform raw data into actionable insights with beautiful dashboards, reports, and AI-powered analytics pipelines.</p>
+        <div class="service-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Excel</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <div class="service-icon-wrap">🔌</div>
+        <h3 class="service-title">API Integration</h3>
+        <p class="service-desc">Connect your apps, services, and platforms seamlessly. From payment gateways to third-party APIs, I bridge the gaps.</p>
+        <div class="service-tags">
+          <span class="tag">REST</span>
+          <span class="tag">GraphQL</span>
+          <span class="tag">Webhooks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section>
+  <div class="container">
+    <p class="section-label">How I Work</p>
+    <h2 class="section-title">Simple, transparent process</h2>
+    <p class="section-desc">I keep things clear and collaborative from day one, so you always know what's happening with your project.</p>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Discovery</h3>
+        <p class="step-desc">We discuss your goals, requirements, and vision in detail to align on the perfect solution.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Planning</h3>
+        <p class="step-desc">I create a clear roadmap with timelines, milestones, and deliverables before writing a single line of code.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Build</h3>
+        <p class="step-desc">Clean, documented development with regular updates so you're never left wondering about progress.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <h3 class="step-title">Deliver</h3>
+        <p class="step-desc">On-time delivery with full handoff, documentation, and free revisions until you're 100% happy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio-bg">
+  <div class="container">
+    <p class="section-label">Past Work</p>
+    <h2 class="section-title">Projects I've built</h2>
+    <p class="section-desc">A selection of real projects delivered for clients — each one crafted with care and attention to detail.</p>
+
+    <div class="portfolio-grid">
+      <div class="portfolio-card">
+        <div class="portfolio-thumb thumb-1">🤖</div>
+        <div class="portfolio-info">
+          <p class="portfolio-category">AI Development</p>
+          <h3 class="portfolio-title">Customer Support AI Chatbot</h3>
+          <p class="portfolio-desc">GPT-4 powered chatbot integrated with a SaaS platform, handling 500+ queries daily with 94% resolution rate.</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="portfolio-thumb thumb-2">🌐</div>
+        <div class="portfolio-info">
+          <p class="portfolio-category">Web Development</p>
+          <h3 class="portfolio-title">E-Commerce Platform</h3>
+          <p class="portfolio-desc">Full-stack Next.js storefront with payment integration, inventory management, and AI-powered recommendations.</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="portfolio-thumb thumb-3">🎨</div>
+        <div class="portfolio-info">
+          <p class="portfolio-category">UI/UX Design</p>
+          <h3 class="portfolio-title">FinTech Dashboard</h3>
+          <p class="portfolio-desc">Complete Figma design system for a financial analytics app — from wireframes to polished hi-fi prototypes.</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="portfolio-thumb thumb-4">⚡</div>
+        <div class="portfolio-info">
+          <p class="portfolio-category">AI Automation</p>
+          <h3 class="portfolio-title">Business Workflow Automation</h3>
+          <p class="portfolio-desc">End-to-end automation pipeline connecting CRM, email, and Slack — saving the client 20+ hours per week.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY HIRE ME -->
+<section>
+  <div class="container">
+    <p class="section-label">Why Choose Me</p>
+    <h2 class="section-title">What sets me apart</h2>
+    <p class="section-desc">Hundreds of freelancers can write code. Here's why clients keep coming back to me specifically.</p>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🎯</div>
+        <h3 class="why-title">Results-Focused</h3>
+        <p class="why-desc">I don't just deliver code — I deliver outcomes. Every project is measured by the impact it creates for your business.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">⏱️</div>
+        <h3 class="why-title">On-Time, Always</h3>
+        <p class="why-desc">100% on-time delivery record. I set realistic timelines and communicate proactively if anything changes.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💬</div>
+        <h3 class="why-title">Clear Communication</h3>
+        <p class="why-desc">Regular updates, fast replies, and plain-English explanations. No technical jargon, no radio silence.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔄</div>
+        <h3 class="why-title">Free Revisions</h3>
+        <p class="why-desc">Your satisfaction is the finish line. I offer revisions until you're genuinely happy with the final result.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🧠</div>
+        <h3 class="why-title">AI-Native Mindset</h3>
+        <p class="why-desc">I build with AI-first thinking — meaning your product is built for the future, not yesterday's tech stack.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🏗️</div>
+        <h3 class="why-title">Clean Code</h3>
+        <p class="why-desc">Well-documented, maintainable code that's easy to scale and hand off. No spaghetti, no black boxes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <p class="section-label" style="color:rgba(255,255,255,0.5)">Ready to Start?</p>
+    <h2 class="section-title" style="margin-bottom:16px">Let's build something<br>amazing together.</h2>
+    <p class="section-desc">Drop me a message on Fiverr and let's talk about your project. First response within 1 hour.</p>
+    <a href="https://www.fiverr.com/tanzeelqureshi1" class="cta-btn" target="_blank">
+      Message on Fiverr ↗
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>© 2026 Tanzeel Qureahi · <a href="https://www.fiverr.com/tanzeelqureshi1" target="_blank">fiverr.com/tanzeelqureshi1</a> · Pakistan 🇵🇰</p>
+  </div>
+</footer>
+
+</body>
+</html>
